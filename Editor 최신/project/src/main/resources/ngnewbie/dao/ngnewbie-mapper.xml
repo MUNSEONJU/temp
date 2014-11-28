@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 타입 별명 사용하기 + result map 사용하기 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ngnewbie.dao.NgnewbieDao">
+  <!-- 컬럼과 VO 객체의 프로퍼티를 연결하는 정보 설정 
+  => 개발자는 프로퍼티 이름과 일치시키기 위해 컬럼의 별명을 선언할 필요가 없다.
+  -->
+  <resultMap type="ngnewbie" id="ngnewbieMap">
+    <id column="NO" property="no"/>
+    <result column="URLHASH" property="urlhash"/>
+    <result column="CONFIG" property="config"/>
+    <result column="HTML" property="html"/>
+    <result column="JS" property="js"/>
+  </resultMap>
+  
+  <insert id="insert" parameterType="ngnewbie"
+        useGeneratedKeys="true" keyColumn="no" keyProperty="no">
+    insert into ngnewbie (urlhash, config, html, js)
+    values(#{urlhash},#{config},#{html},#{js})
+  </insert>
+  
+  <select id="select" resultMap="ngnewbieMap">
+    select no, urlhash, config, html, js from ngnewbie where urlhash =#{urlhash}
+  </select>
+  
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

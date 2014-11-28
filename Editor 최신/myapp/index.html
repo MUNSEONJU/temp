@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html ng-app="ngEditor">
+<head>
+	<meta charset="utf-8">
+	<title>ngNewbie Editor</title>
+	<link rel="shortcut icon" href="img/minlogo.gif">
+	<!-- AngularJS -->
+	<script src="https://code.angularjs.org/1.2.9/angular.min.js"></script>
+	<!-- JQuery -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<!-- JQuery UI -->
+	<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css" />
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0-wip/js/bootstrap.min.js"></script>
+	
+	<!-- Download, zip generator -->
+	<script src="js/jszip.js"></script>
+  <script src="js/FileSaver.js"></script>
+  <script src="js/test.js"></script>
+	
+	
+	 <!-- ace editor -->
+  <script src="https://rawgithub.com/ajaxorg/ace-builds/master/src/ace.js" type="text/javascript" charset="utf-8"></script>
+  <script src="http://rawgithub.com/ajaxorg/ace-builds/master/src/ext-language_tools.js"></script>
+	
+	
+	<!-- Angular UI Bootstrap -->
+	<!-- <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script> -->
+	<!-- css file -->
+	<link href="css/style.css" rel="stylesheet">
+	<link href="css/switch.css" rel="stylesheet">
+	<link href="css/slide.css" rel="stylesheet">
+</head>
+
+<body ng-controller="MainCtrl">
+	
+	
+	<!-- left Slide Modal -->
+	<div id="modal">
+		<button id="configclose" class="btn btn-danger btn-xs" ng-click="configActive()">
+		<i class="glyphicon glyphicon-remove"></i>
+		</button>
+		<settings></settings>
+	</div>
+	<!-- left Slide Modal -->
+	<div id="modal2">
+		<button id="cdnclose" class="btn btn-danger btn-xs" ng-click="cdnActive()">
+		<i class="glyphicon glyphicon-remove"></i>
+		</button>
+		<settings2></settings2>
+	</div>
+	
+	<!-- top bar -->
+	<div id="topnav">
+		
+		<div class="logo">
+			<a href="#" onclick="location.reload();">
+			<img class="logoimg" src="img
+			/mainlogo.gif">
+			</a>
+		</div>
+		
+		<div class="topnav-btn-div" ng-init="showResultBtn = false">
+			<button class="btn btn-black btn-sm" data-toggle="tooltip" data-original-title="Run (F5)"
+			ng-hide="dynamicResult" ng-click="run()"><i class="glyphicon glyphicon-play"></i></button>
+			<button class="btn btn-black btn-sm" data-toggle="tooltip" data-original-title="Settings"
+			ng-click="configActive()"><i class="glyphicon glyphicon-cog"></i></button>
+			<button class="btn btn-black btn-sm" data-toggle="tooltip" data-original-title="CDN"
+			ng-click="cdnActive()">CDN</button>
+			<button class="btn btn-black btn-sm" data-toggle="tooltip" data-original-title="Save(Ctrl + s)"
+			ng-click="save()"><i class="glyphicon glyphicon-floppy-disk"></i></button>
+			<button class="btn btn-black btn-sm" data-toggle="tooltip" data-original-title="Download"
+			ng-click="download()" ng-click="download()"><i class="glyphicon glyphicon-download-alt"></i></button>
+			<!-- <button class="btn btn-black btn-sm" data-toggle="tooltip" data-original-title="Share()"
+			ng-click="share()"><i class="glyphicon glyphicon-share"></i></button> -->
+			<button class="btn btn-black btn-sm" ng-click="clearCode()">Clear</button>
+		</div>
+		
+		
+		<!-- Result button div -->
+		<div id="result_btn_div" ng-init="fullResult = true" ng-init="resultShowHide = false">
+			<button id="refresh_btn"
+			ng-click="update();" class="btn btn-warning btn-xs" ng-show="dynamicResult"><i class="glyphicon glyphicon-refresh"></i></button>
+			<button id="run_btn"
+			ng-click="run()" class="btn btn-success btn-xs" ng-hide="dynamicResult"><i class="glyphicon glyphicon-play"></i></button>
+			<button id="full_btn" 
+			ng-click="full();" class="btn btn-info btn-xs" ng-show="fullResult" ><i class="glyphicon glyphicon-fullscreen"></i></button>
+			<button id="close_btn" 
+			ng-click="close();" class="btn btn-danger btn-xs" ng-hide="fullResult"><i class="glyphicon glyphicon-resize-small"></i></button>
+		</div>
+		
+			
+	</div>
+	
+	<!-- left bar -->
+	<div id="sidebar">
+		<my-accordion></my-accordion>
+	</div>
+
+	<!-- right div -->
+	<div id="content">
+		<div id="top-content">
+			<div class="editors_div">
+				<div id="editor1_div">
+					<span class="label label-default">HTML</span>
+					<pre id="editor1"></pre>
+				</div>
+				<div id="editor2_div" ng-show="je">
+					<span class="label label-default">JavaScript</span>
+					<pre id="editor2"></pre>
+				</div>
+			</div>
+
+			
+			<div id="result-div">
+				<iframe id="result" class="result-small"></iframe>
+			</div>
+			
+
+			<div id="error-div" ng-show="errorCheck">
+				<p id="error-msg"><i class="glyphicon glyphicon-remove-sign"></i>&nbsp;<span id="error-text"></span></p>
+			</div>
+			<script>
+				$('#error-div').hide();
+			</script>
+
+		</div>
+		
+      <!-- <div id="content-resizer" 
+          resizer="horizontal" 
+          resizer-height="6" 
+          resizer-top="#top-content" 
+          resizer-bottom="#bottom-content"
+          resizer-max="900">
+        </div> -->
+        <!-- <div id="bottom-content">Bottom content</div> -->
+      </div>
+		
+      <!-- resizer vertical -->
+      <div id="sidebar-resizer" 
+      resizer="vertical" 
+      resizer-width="10"
+      resizer-height="20" 
+      resizer-left="#sidebar" 
+      resizer-right="#content"
+      resizer-max="200">
+      <span id="resizer-span"></span>
+    </div>
+    
+
+	<img id="loading" src="img/loading-2.gif">
+	
+	
+	
+	
+	
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/directives.js"></script>
+	
+	
+  </body>
+
+  </html>

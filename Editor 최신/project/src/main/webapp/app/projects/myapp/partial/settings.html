@@ -1,0 +1,60 @@
+<div class="settings-content-div">
+  <div>
+  <h3 class="setting-title">Editor</h3>
+  <label>Theme</label>
+  <select id="themeSelectBox" class="selectbar form-control" ng-model="theme" ng-change="changeTheme()"ng-options="to.name for to in themeOptions"></select>
+  <br>
+    <label>Font Size</label><br>
+    <div style="padding-left: 20px;">
+      <button id="minusfs" type="button" class="btn btn-default btn-xs" ng-click="fontSize = fontSize - 1">
+        &nbsp;<i class="glyphicon glyphicon-minus"></i>&nbsp;
+      </button>
+      <input id="fsInput" ng-model="fontSize" maxlength="3">
+      <button id="plusfs" type="button" class="btn btn-default btn-xs" ng-click="fontSize = fontSize + 1">
+        &nbsp;<i class="glyphicon glyphicon-plus"></i>&nbsp;
+      </button>
+    </div>
+  <br>
+  <br>
+  <br>
+    <label>Tab Size</label><br>
+    <div style="padding-left: 20px;">
+      <button id="minusts" type="button" class="btn btn-default btn-xs" ng-click="tabSize = tabSize - 1">
+        &nbsp;<i class="glyphicon glyphicon-minus"></i>&nbsp;
+      </button>
+      <input id="tsInput" ng-model="tabSize" maxlength="2">
+      <button id="plusts" type="button" class="btn btn-default btn-xs" ng-click="tabSize = tabSize + 1">
+        &nbsp;<i class="glyphicon glyphicon-plus"></i>&nbsp;
+      </button>
+    </div>
+  <br>
+  <br>
+  <br>
+  <div class="lib-div">
+    Dynamic Result
+    <div class="sw-div">
+      <label class="switch switch-blue">
+        <input type="checkbox" class="switch-input" ng-model="dynamicResult" ng-change="runBtnToggle()">
+        <span class="switch-label" data-on="On" data-off="Off"></span> <span class="switch-handle"></span> 
+      </label>
+    </div>
+  </div>
+  <div class="lib-div">
+    Error Check
+    <div class="sw-div">
+      <label class="switch switch-blue">
+        <input type="checkbox" class="switch-input" ng-model="errorCheck" ng-change="update()">
+        <span class="switch-label" data-on="On" data-off="Off"></span> <span class="switch-handle"></span> </label>
+    </div>
+  </div>
+  <div class="lib-div">
+    JS Editor
+    <div class="sw-div">
+      <label class="switch switch-blue">
+        <input type="checkbox" class="switch-input" ng-model="je" ng-change="jsEditor()">
+        <span class="switch-label" data-on="On" data-off="Off"></span> <span class="switch-handle"></span> </label>
+    </div>
+  </div>
+  </div>
+  <hr>
+</div>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html ng-app="application" ng-controller="commonController">
+<head>
+	<title></title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://code.angularjs.org/1.2.9/angular.min.js"></script>
+  <script type="text/javascript" src="http://code.angularjs.org/1.2.9/angular-route.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="js/tools.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+
+	<link rel="stylesheet" type="text/css" href="css/app.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	
+</head>
+<body>
+
+	<div id="transparency-cover" class="fixed">	</div>
+	<div id="menu-wrap" class="fixed">
+	</div>
+	
+  <div id="header">
+    <div class="info">
+      <span class="info-logo"></span>
+      <h1>AngularJS기반 예제와 작업 공간을 제공합니다</h1>
+      <div>
+        <a href = "projects/myapp/editor.html" class="button button-2x">
+         <span class="glyphicon glyphicon-play"></span> START NOW
+        </a>
+      </div>
+      <p class="info-version">version 1.0</p>
+    </div>
+  </div>
+    
+  <div id="topnav">
+     <img class="logo-navi" src="img/logo/logo126x45_hover.png">
+     <img class="logo-navi top" src="img/logo/logo126x45.png" ng-click="logoClick()">
+     <div class="navi">
+	     <a href="#" ng-repeat="navi in navList" class="button-navi {{navi}}" ng-click="navClick(navi)">{{navi | uppercase}}</a>
+	   </div>
+  </div>
+  
+  <div id="content-wrap">
+	  <div id="contents">
+      <div class="content-unit content-intro">
+        <h2 class="title">aaaaa</h2>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+      </div> 
+      <div class="content-unit content-manual">
+        <h2 class="title">bbbbb</h2>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+      </div> 
+      <div class="content-unit content-contact">
+        <h2 class="title">cccc</h2>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+        <p class="large-p">asdfsa</p>
+      </div> 
+    </div>
+	</div>
+
+</body>
+</html>

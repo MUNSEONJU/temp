@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:p="http://www.springframework.org/schema/p" 
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:jee="http://www.springframework.org/schema/jee" 
+  xmlns:mvc="http://www.springframework.org/schema/mvc"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/jee
+        http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+
+  <!-- *.json 요청을 처리할 페이지 컨트롤러 생성 -->
+  <context:component-scan base-package="ngnewbie.controller.json"/>
+  <context:component-scan base-package="ngnewbie.controller.bind"/>
+
+  <!-- @ControllerAdvice 등의 MVC 관련 애노테이션들을 처리할 객체를 등록하라! -->
+  <mvc:annotation-driven />
+
+  <bean
+    class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+    <property name="mediaTypes">
+      <map>
+        <entry key="atom" value="application/atom+xml" />
+        <entry key="html" value="text/html" />
+        <entry key="json" value="application/json" />
+      </map>
+    </property>
+    <property name="viewResolvers">
+      <list>
+        <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+        <bean
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+          <property name="prefix" value="/WEB-INF/views/" />
+          <property name="suffix" value=".jsp" />
+        </bean>
+      </list>
+    </property>
+    <property name="defaultViews">
+      <list>
+        <bean
+          class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+      </list>
+    </property>
+  </bean>
+  
+  <!-- 멀티 파트 파일 업로드 처리기 등록 -->
+  <bean id="multipartResolver"
+    class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    <property name="maxUploadSize" value="5000000" />
+  </bean>
+</beans>

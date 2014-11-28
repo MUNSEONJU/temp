@@ -1,0 +1,25 @@
+#modal, #modal2 {
+  background-color: #FFF;
+  position: absolute;
+  bottom: 0;
+  left: -200px;
+  width: 200px;
+  height: calc(100% - 35px);
+  z-index: 4000;
+  overflow-y: auto;
+	
+	-webkit-transition: all 0.3s ease; 
+	-moz-transition: all 0.3s ease; 
+	-o-transition: all 0.3s ease; 
+	transition: all 0.3s ease; 
+}
+
+#modal.opened {
+	left : 0;
+}
+
+#modal2.opened {
+	left : 0;
+}
+
+
